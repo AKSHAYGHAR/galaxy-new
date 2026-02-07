@@ -1,9 +1,9 @@
 {
-  "name": "standard-wallpaper",
-  "productName": "Standard Wallpaper",
+  "name": "homogomo-wallpaper",
+  "productName": "Homogomo Wallpaper",
   "private": true,
   "description": "Premium Mobile & Desktop Wallpapers",
-  "author": "Standard",
+  "author": "Homogomo",
   "version": "0.0.0",
   "main": "electron/main.cjs",
   "type": "module",

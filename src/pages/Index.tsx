@@ -37,7 +37,7 @@ const Index = () => {
       <div className="relative">
         <ResponsiveHeroBanner
           backgroundImageUrl="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e2dbea0-c0a9-413f-a57b-af279633c0df_3840w.jpg"
-          title="STANDARD"
+          title="HOMOGOMO"
           titleLine2=""
           description="Curated for desktop & mobile"
           badgeLabel=""
