@@ -1,5 +1,4 @@
 import type { Config } from "tailwindcss";
-import tailwindanimate from "tailwindcss-animate";
 
 export default {
   darkMode: ["class"],
@@ -87,25 +86,6 @@ export default {
         rotate: {
           to: { transform: "rotate(90deg)" },
         },
-        "nebula-pulse": {
-          "0%, 100%": { opacity: "0.3", transform: "scale(1)" },
-          "50%": { opacity: "0.5", transform: "scale(1.1)" },
-        },
-        twinkle: {
-          "0%, 100%": { opacity: "0.2", transform: "scale(0.8)" },
-          "50%": { opacity: "1", transform: "scale(1.2)" },
-        },
-        float: {
-          "0%, 100%": { transform: "translate(0, 0) rotate(0deg)" },
-          "33%": { transform: "translate(30px, -50px) rotate(10deg)" },
-          "66%": { transform: "translate(-20px, 20px) rotate(-5deg)" },
-        },
-        shoot: {
-          "0%": { transform: "translateX(0) translateY(0) rotate(45deg)", opacity: "0" },
-          "1%": { opacity: "1" },
-          "20%": { transform: "translateX(-200vw) translateY(200vh) rotate(45deg)", opacity: "0" },
-          "100%": { transform: "translateX(-200vw) translateY(200vh) rotate(45deg)", opacity: "0" },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -118,10 +98,6 @@ export default {
         "fade-slide-in-2": "fadeSlideIn 0.5s ease-out 0.2s forwards",
         "fade-slide-in-3": "fadeSlideIn 0.5s ease-out 0.3s forwards",
         "fade-slide-in-4": "fadeSlideIn 0.5s ease-out 0.4s forwards",
-        "nebula-pulse": "nebula-pulse 15s ease-in-out infinite",
-        "twinkle": "twinkle 4s ease-in-out infinite",
-        "float": "float 20s ease-in-out infinite",
-        "shoot": "shoot 10s linear infinite",
       },
       transitionDuration: {
         "DEFAULT": "300ms",
@@ -131,5 +107,5 @@ export default {
       },
     },
   },
-  plugins: [tailwindanimate],
+  plugins: [require("tailwindcss-animate")],
 } satisfies Config;
