@@ -20,6 +20,7 @@ import { SaveButton } from './save-button';
 interface ResponsiveHeroBannerProps {
     logoUrl?: string;
     backgroundImageUrl?: string;
+    backgroundComponent?: React.ReactNode;
     navLinks?: NavLink[];
     ctaButtonText?: string;
     ctaButtonHref?: string;
@@ -42,6 +43,7 @@ interface ResponsiveHeroBannerProps {
 const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
     logoUrl,
     backgroundImageUrl,
+    backgroundComponent,
     navLinks = [],
     ctaButtonText,
     ctaButtonHref = "#",
@@ -64,13 +66,19 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
     return (
         <section className="w-full isolate min-h-screen overflow-hidden relative">
-            <img
-                src={backgroundImageUrl}
-                alt=""
-                className="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0"
-            />
+            {backgroundComponent ? (
+                <div className="absolute inset-0 w-full h-full -z-10">
+                    {backgroundComponent}
+                </div>
+            ) : (
+                <img
+                    src={backgroundImageUrl}
+                    alt=""
+                    className="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0 -z-20"
+                />
+            )}
             {/* Gradient Overlay for Depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/20 to-black/60 pointer-events-none -z-10" />
 
             <header className="z-20 xl:top-6 relative">
                 <div className="mx-6 md:mx-10">
