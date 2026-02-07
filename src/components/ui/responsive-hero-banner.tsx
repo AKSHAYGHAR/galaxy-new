@@ -95,7 +95,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
                                 />
                             ) : (
                                 <button className="text-sm font-bold tracking-[0.2em] text-white uppercase bg-white/10 backdrop-blur-md border border-white/10 px-6 py-2 rounded-full cursor-pointer hover:bg-white/20 transition-all shadow-lg focus:outline-none">
-                                    Standard
+                                    Homogomo
                                 </button>
                             )}
                         </Link>
@@ -189,7 +189,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
             <div className="z-10 relative">
                 <div className="sm:pt-32 md:pt-40 lg:pt-48 max-w-7xl mx-auto pt-32 px-6 pb-20">
-                    <div className="mx-auto max-w-4xl text-center">
+                    <div className="mx-auto max-w-full text-center">
                         {(badgeLabel || badgeText) && (
                             <div className="mb-8 inline-flex items-center gap-3 rounded-full bg-black/30 px-4 py-2 ring-1 ring-white/10 backdrop-blur-xl shadow-xl animate-fade-slide-in-1">
                                 {badgeLabel && (
@@ -207,7 +207,7 @@ const ResponsiveHeroBanner: React.FC<ResponsiveHeroBannerProps> = ({
 
                         <h1 className="text-4xl sm:text-7xl md:text-8xl lg:text-[10rem] leading-none text-white tracking-tighter font-serif font-black uppercase animate-fade-slide-in-2 drop-shadow-2xl">
                             {title}
-                            <br className="hidden sm:block" />
+                            {titleLine2 && <br className="hidden sm:block" />}
                             {titleLine2}
                         </h1>
 
