@@ -5,7 +5,7 @@ import { Footer } from "@/components/Footer";
 import { useEffect, useState } from "react";
 
 import { Counter } from "@/components/ui/counter";
-import GalaxyBackground from "@/components/shared/GalaxyBackground";
+import WallpaperBackground from "@/components/shared/WallpaperBackground";
 import { desktopWallpapers } from "./Desktop";
 import { mobileWallpapers } from "./Mobile";
 
@@ -37,7 +37,7 @@ const Index = () => {
     <div className="min-h-screen bg-black flex flex-col">
       <div className="relative">
         <ResponsiveHeroBanner
-          backgroundComponent={<GalaxyBackground />}
+          backgroundComponent={<WallpaperBackground />}
           title="HOMOGOMO"
           titleLine2=""
           description="Curated for desktop & mobile"
