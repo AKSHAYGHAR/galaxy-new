@@ -22,9 +22,9 @@ const wallpapers = [
 
 const WallpaperBackground = () => {
     return (
-        <div className="fixed inset-0. -z-10 h-full w-full bg-black overflow-hidden">
+        <div className="fixed inset-0 -z-10 h-full w-full bg-black overflow-hidden">
             {/* Dark Overlay for readability - kept strong as requested (black side me) */}
-            <div className="absolute inset-0 bg-black/80 z-10" />
+            <div className="absolute inset-0 bg-black/40 z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-20" />
             <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-20" />
 
