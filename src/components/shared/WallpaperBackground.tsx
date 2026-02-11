@@ -23,13 +23,13 @@ const wallpapers = [
 const WallpaperBackground = () => {
     return (
         <div className="fixed inset-0 -z-10 h-full w-full bg-black overflow-hidden">
-            {/* Dark Overlay for readability - kept strong as requested (black side me) */}
-            <div className="absolute inset-0 bg-black/40 z-10" />
+            {/* Dark Overlay for readability - reduced for more wallpaper visibility */}
+            <div className="absolute inset-0 bg-black/20 z-10" />
             <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-20" />
             <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-20" />
 
             {/* Marquee Grid */}
-            <div className="absolute inset-0 flex gap-4 p-4 opacity-40 transform -rotate-6 scale-110">
+            <div className="absolute inset-0 flex gap-4 p-4 opacity-65 transform -rotate-6 scale-110">
                 {/* Column 1 - Down */}
                 <div className="flex flex-col gap-4 animate-marquee-down">
                     {[...wallpapers, ...wallpapers].map((src, i) => (
