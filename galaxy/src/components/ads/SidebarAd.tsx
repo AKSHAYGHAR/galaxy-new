@@ -12,14 +12,13 @@ const SidebarAd = () => {
     }, []);
 
     return (
-        <div className="hidden lg:block fixed right-6 top-32 z-40 w-[160px]">
-            <div className="sticky top-32 bg-gradient-to-br from-purple-900/10 to-blue-900/10 backdrop-blur-sm rounded-lg border border-purple-500/20 p-4 overflow-hidden">
+        <div className="hidden lg:block fixed right-6 top-32 z-40 w-[140px]">
+            <div className="sticky top-32 bg-gradient-to-br from-purple-900/10 to-blue-900/10 backdrop-blur-sm rounded-lg border border-purple-500/20 p-2 overflow-hidden">
                 <ins
                     className="adsbygoogle"
-                    style={{ display: "block" }}
+                    style={{ display: "inline-block", width: "120px", height: "1200px" }}
                     data-ad-client="ca-pub-1173628680206450"
-                    data-ad-slot="1234567891"
-                    data-ad-format="vertical"
+                    data-ad-slot="1305520689"
                 />
             </div>
         </div>
