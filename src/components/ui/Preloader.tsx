@@ -43,7 +43,7 @@ const Preloader = ({ onComplete }: PreloaderProps) => {
                                     delay: index * 0.15, // Typewriter effect speed
                                     ease: "easeOut",
                                 }}
-                                className="text-white text-5xl md:text-7xl lg:text-8xl font-black tracking-[0.2em] uppercase"
+                                className="text-white text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-black tracking-[0.15em] md:tracking-[0.2em] uppercase"
                             >
                                 {letter}
                             </motion.span>
