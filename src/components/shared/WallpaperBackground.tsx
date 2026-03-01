@@ -23,18 +23,18 @@ const wallpapers = [
 const WallpaperBackground = () => {
     return (
         <div className="fixed inset-0 -z-10 h-full w-full bg-black overflow-hidden">
-            {/* Dark Overlay for readability - reduced for more wallpaper visibility */}
-            <div className="absolute inset-0 bg-black/20 z-10" />
-            <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-black z-20" />
-            <div className="absolute inset-0 bg-gradient-to-b from-black via-transparent to-black z-20" />
+            {/* Colorful overlay for readability instead of pure gray/black */}
+            <div className="absolute inset-0 bg-blue-900/10 mix-blend-overlay z-10" />
+            <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-transparent to-black/80 z-20" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-transparent to-black/80 z-20" />
 
             {/* Marquee Grid */}
-            <div className="absolute inset-0 flex gap-4 p-4 opacity-65 transform -rotate-6 scale-110">
+            <div className="absolute inset-0 flex gap-4 p-4 opacity-80 transform -rotate-6 scale-110">
                 {/* Column 1 - Down */}
                 <div className="flex flex-col gap-4 animate-marquee-down">
                     {[...wallpapers, ...wallpapers].map((src, i) => (
-                        <div key={`c1-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-2xl">
-                            <img src={src} alt="" className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700" />
+                        <div key={`c1-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-xl">
+                            <img src={src} alt="" className="w-full h-full object-cover brightness-95 saturate-110 hover:brightness-110 hover:scale-105 transition-all duration-700" />
                         </div>
                     ))}
                 </div>
@@ -42,8 +42,8 @@ const WallpaperBackground = () => {
                 {/* Column 2 - Up */}
                 <div className="flex flex-col gap-4 animate-marquee-up" style={{ animationDuration: '45s' }}>
                     {[...wallpapers, ...wallpapers].reverse().map((src, i) => (
-                        <div key={`c2-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-2xl">
-                            <img src={src} alt="" className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700" />
+                        <div key={`c2-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-xl">
+                            <img src={src} alt="" className="w-full h-full object-cover brightness-95 saturate-110 hover:brightness-110 hover:scale-105 transition-all duration-700" />
                         </div>
                     ))}
                 </div>
@@ -51,8 +51,8 @@ const WallpaperBackground = () => {
                 {/* Column 3 - Down */}
                 <div className="flex flex-col gap-4 animate-marquee-down" style={{ animationDuration: '55s' }}>
                     {[...wallpapers, ...wallpapers].map((src, i) => (
-                        <div key={`c3-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-2xl">
-                            <img src={src} alt="" className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700" />
+                        <div key={`c3-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-xl">
+                            <img src={src} alt="" className="w-full h-full object-cover brightness-95 saturate-110 hover:brightness-110 hover:scale-105 transition-all duration-700" />
                         </div>
                     ))}
                 </div>
@@ -60,16 +60,16 @@ const WallpaperBackground = () => {
                 {/* Column 4 - Up */}
                 <div className="flex flex-col gap-4 animate-marquee-up" style={{ animationDuration: '50s' }}>
                     {[...wallpapers, ...wallpapers].reverse().map((src, i) => (
-                        <div key={`c4-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-2xl">
-                            <img src={src} alt="" className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700" />
+                        <div key={`c4-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-xl">
+                            <img src={src} alt="" className="w-full h-full object-cover brightness-95 saturate-110 hover:brightness-110 hover:scale-105 transition-all duration-700" />
                         </div>
                     ))}
                 </div>
                 {/* Column 5 - Down */}
                 <div className="flex flex-col gap-4 animate-marquee-down" style={{ animationDuration: '60s' }}>
                     {[...wallpapers, ...wallpapers].map((src, i) => (
-                        <div key={`c5-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-2xl">
-                            <img src={src} alt="" className="w-full h-full object-cover grayscale-[0.5] hover:grayscale-0 transition-all duration-700" />
+                        <div key={`c5-${i}`} className="w-64 h-96 shrink-0 rounded-lg overflow-hidden shadow-xl">
+                            <img src={src} alt="" className="w-full h-full object-cover brightness-95 saturate-110 hover:brightness-110 hover:scale-105 transition-all duration-700" />
                         </div>
                     ))}
                 </div>

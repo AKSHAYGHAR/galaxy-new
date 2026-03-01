@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { CurtainButton } from "@/components/ui/curtain-button";
+import { motion } from "framer-motion";
 
 interface WallpaperCardProps {
   src: string;
@@ -39,15 +40,23 @@ const WallpaperCard = ({ src, alt, filename }: WallpaperCardProps) => {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "0px 0px -50px 0px" }}
+      transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
       className="relative w-full cursor-pointer group"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div
-        className="relative p-3 rounded-2xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-sm transition-all duration-500 ease-out"
+      <motion.div
+        animate={{
+          y: isHovered ? -8 : 0,
+          scale: isHovered ? 1.02 : 1,
+        }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative p-3 rounded-2xl bg-white/5 border border-white/10 shadow-2xl backdrop-blur-sm"
         style={{
-          transform: isHovered ? "translateY(-8px)" : "translateY(0)",
           boxShadow: isHovered
             ? "0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.1)"
             : "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 255, 255, 0.05)"
@@ -82,26 +91,27 @@ const WallpaperCard = ({ src, alt, filename }: WallpaperCardProps) => {
           )}
 
           {/* Download button with ghost curtain animation */}
-          <div
-            className="absolute bottom-6 left-1/2 -translate-x-1/2 transition-all duration-300 ease-apple"
-            style={{
+          <motion.div
+            initial={{ opacity: 0, y: 10, x: "-50%" }}
+            animate={{
               opacity: isHovered ? 1 : 0,
-              transform: isHovered
-                ? "translate(-50%, 0)"
-                : "translate(-50%, 8px)",
+              y: isHovered ? 0 : 10,
+              x: "-50%"
             }}
+            transition={{ duration: 0.3, ease: "easeOut" }}
+            className="absolute bottom-6 left-1/2"
           >
             <CurtainButton
               text="Download"
               variant="ghost"
               size="sm"
               onClick={handleDownload}
-              className="backdrop-blur-sm bg-white/10 rounded-full px-6"
+              className="backdrop-blur-sm bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full px-6 transition-all duration-300 shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:shadow-[0_0_25px_rgba(255,255,255,0.4)]"
             />
-          </div>
+          </motion.div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 
