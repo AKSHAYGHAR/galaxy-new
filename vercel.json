@@ -1,4 +1,17 @@
 {
+    "redirects": [
+        {
+            "source": "/(.*)",
+            "has": [
+                {
+                    "type": "host",
+                    "value": "homogomo-new-ten.vercel.app"
+                }
+            ],
+            "destination": "https://homogomo.vercel.app/$1",
+            "permanent": true
+        }
+    ],
     "rewrites": [
         {
             "source": "/((?!sitemap\\.xml|robots\\.txt|sw\\.js|ad2\\.js).*)",
