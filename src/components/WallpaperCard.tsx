@@ -6,16 +6,20 @@ interface WallpaperCardProps {
   src: string;
   alt: string;
   filename: string;
+  photographer?: string;
+  photographerUrl?: string;
+  downloadSrc?: string;
 }
 
-const WallpaperCard = ({ src, alt, filename }: WallpaperCardProps) => {
+const WallpaperCard = ({ src, alt, filename, photographer, photographerUrl, downloadSrc }: WallpaperCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [imgError, setImgError] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   const handleDownload = async () => {
     try {
-      const response = await fetch(src);
+      const fetchSrc = downloadSrc || src;
+      const response = await fetch(fetchSrc);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
@@ -88,6 +92,27 @@ const WallpaperCard = ({ src, alt, filename }: WallpaperCardProps) => {
             <div className="absolute inset-0 flex items-center justify-center text-muted-foreground text-sm">
               Failed to load image
             </div>
+          )}
+
+          {/* Photographer credit badge */}
+          {photographer && (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.3 }}
+              className="absolute top-3 left-3"
+            >
+              <a
+                href={photographerUrl || "#"}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-medium text-white/90 bg-black/50 backdrop-blur-sm border border-white/10 hover:bg-black/70 transition-colors duration-200"
+              >
+                <span>📸</span>
+                <span>{photographer}</span>
+              </a>
+            </motion.div>
           )}
 
           {/* Download button with ghost curtain animation */}
