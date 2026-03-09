@@ -2,7 +2,7 @@ import Logo from "@/components/Logo";
 import WallpaperCard from "@/components/WallpaperCard";
 import SectionLabel from "@/components/SectionLabel";
 import { NavLink } from "@/components/NavLink";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 import { usePexelsWallpapers } from "@/hooks/usePexelsWallpapers";
 
 import mobileWallpaper1 from "@/assets/mobile-wallpaper-1.jpg";
@@ -273,28 +273,7 @@ export const mobileWallpapers = [
 ];
 
 const Mobile = () => {
-  const { wallpapers: pexelsWallpapers, isLoading, error, loadMore, loadInitial } = usePexelsWallpapers("portrait");
-  const pexelsSectionRef = useRef<HTMLDivElement>(null);
-  const hasInitialized = useRef(false);
-
-  // Auto-load first batch when the Pexels section scrolls into view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting && !hasInitialized.current) {
-          hasInitialized.current = true;
-          loadInitial();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (pexelsSectionRef.current) {
-      observer.observe(pexelsSectionRef.current);
-    }
-
-    return () => observer.disconnect();
-  }, [loadInitial]);
+  const { wallpapers: pexelsWallpapers, isLoading, error, loadMore } = usePexelsWallpapers("portrait");
 
   return (
     <div className="min-h-screen bg-black relative isolate">
@@ -307,7 +286,7 @@ const Mobile = () => {
       </NavLink>
 
       <main className="px-6 md:px-12 lg:px-24 pt-24 pb-24">
-        {/* ── Existing Static Wallpapers (UNTOUCHED) ── */}
+        {/* ── All Wallpapers (Static + Pexels mixed) ── */}
         <section className="max-w-7xl mx-auto">
           <SectionLabel>Mobile</SectionLabel>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-12">
@@ -319,76 +298,48 @@ const Mobile = () => {
                 filename={wallpaper.filename}
               />
             ))}
+            {pexelsWallpapers.map((wallpaper, index) => (
+              <WallpaperCard
+                key={`pexels-mobile-${index}`}
+                src={wallpaper.src}
+                alt={wallpaper.alt}
+                filename={wallpaper.filename}
+                photographer={wallpaper.photographer}
+                photographerUrl={wallpaper.photographerUrl}
+                downloadSrc={wallpaper.downloadSrc}
+              />
+            ))}
           </div>
-        </section>
 
-        {/* ── Pexels Portrait Wallpapers ── */}
-        <section ref={pexelsSectionRef} className="max-w-7xl mx-auto mt-24">
-          <SectionLabel>More from Pexels</SectionLabel>
-
-          {error === "api_key_missing" ? (
-            <div className="flex flex-col items-center justify-center py-16 text-center">
-              <div className="text-4xl mb-4">🔑</div>
-              <p className="text-white/60 text-sm max-w-md">
-                Pexels API key nahi mila. <code className="text-white/80 bg-white/10 px-1 rounded">.env</code> file mein{" "}
-                <code className="text-white/80 bg-white/10 px-1 rounded">VITE_PEXELS_API_KEY</code> daalo aur server restart karo.
-              </p>
-              <a
-                href="https://www.pexels.com/api/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-4 text-xs text-white/40 underline hover:text-white/70 transition-colors"
+          {/* Load More / Spinner */}
+          <div className="flex justify-center mt-16">
+            {isLoading ? (
+              <div className="flex items-center gap-3 text-white/40 text-sm">
+                <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
+                  <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                  <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+                </svg>
+                Loading wallpapers...
+              </div>
+            ) : error === "fetch_failed" ? (
+              <div className="text-center">
+                <p className="text-white/40 text-sm mb-3">Fetch failed. Retry karo.</p>
+                <button
+                  onClick={loadMore}
+                  className="px-8 py-3 text-xs font-medium tracking-widest uppercase text-white/60 border border-white/10 rounded-full hover:border-white/30 hover:text-white/90 transition-all duration-300"
+                >
+                  Retry
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={loadMore}
+                className="px-10 py-3 text-xs font-medium tracking-widest uppercase text-white/60 border border-white/10 rounded-full hover:border-white/30 hover:text-white/90 hover:bg-white/5 transition-all duration-300"
               >
-                Free API key lo → pexels.com/api
-              </a>
-            </div>
-          ) : (
-            <>
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 md:gap-12">
-                {pexelsWallpapers.map((wallpaper, index) => (
-                  <WallpaperCard
-                    key={`pexels-mobile-${index}`}
-                    src={wallpaper.src}
-                    alt={wallpaper.alt}
-                    filename={wallpaper.filename}
-                    photographer={wallpaper.photographer}
-                    photographerUrl={wallpaper.photographerUrl}
-                    downloadSrc={wallpaper.downloadSrc}
-                  />
-                ))}
-              </div>
-
-              {/* Load More / Spinner */}
-              <div className="flex justify-center mt-16">
-                {isLoading ? (
-                  <div className="flex items-center gap-3 text-white/40 text-sm">
-                    <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Loading wallpapers...
-                  </div>
-                ) : error === "fetch_failed" ? (
-                  <div className="text-center">
-                    <p className="text-white/40 text-sm mb-3">Fetch failed. Retry karo.</p>
-                    <button
-                      onClick={loadMore}
-                      className="px-8 py-3 text-xs font-medium tracking-widest uppercase text-white/60 border border-white/10 rounded-full hover:border-white/30 hover:text-white/90 transition-all duration-300"
-                    >
-                      Retry
-                    </button>
-                  </div>
-                ) : (
-                  <button
-                    onClick={loadMore}
-                    className="px-10 py-3 text-xs font-medium tracking-widest uppercase text-white/60 border border-white/10 rounded-full hover:border-white/30 hover:text-white/90 hover:bg-white/5 transition-all duration-300"
-                  >
-                    Load More
-                  </button>
-                )}
-              </div>
-            </>
-          )}
+                Load More
+              </button>
+            )}
+          </div>
         </section>
       </main>
     </div>
